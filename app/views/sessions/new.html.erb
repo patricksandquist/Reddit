@@ -1,6 +1,6 @@
-<h1>Create User</h1>
+<h1>Log in</h1>
 
-<form action="<%= users_url %>" method="post">
+<form action="<%= session_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
   <%= render 'shared/errors' %>
@@ -12,5 +12,5 @@
   <input type ="password" name="user[password]" id="user_password" value="<%= @user.password %>">
 
   <br>
-  <input type="submit" value="Create User">
+  <input type="submit" value="Log in">
 </form>

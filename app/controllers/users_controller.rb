@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user
     else
-      errors[:user] = @user.errors.full_message
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
