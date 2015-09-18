@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
       params[:user][:username],
       params[:user][:password]
     )
+
     if @user
-      render json: @user
+      log_in_user(@user)
+      redirect_to new_user_sub_url(@user)
     else
       flash.now[:errors] = ["Username/password combination not found"]
       @user = User.new
@@ -19,5 +21,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    @user = User.new
+    log_out_user
+
+    render :new
   end
 end

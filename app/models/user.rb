@@ -42,12 +42,11 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     self.session_token = User.generate_session_token
-    session[:session_token] = @session_token
     self.save!
+    self.session_token
   end
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
-    # self.save!
   end
 end
