@@ -9,10 +9,11 @@ class SessionsController < ApplicationController
       params[:user][:username],
       params[:user][:password]
     )
-    if @user.save
+    if @user
       render json: @user
     else
       flash.now[:errors] = ["Username/password combination not found"]
+      @user = User.new
       render :new
     end
   end
