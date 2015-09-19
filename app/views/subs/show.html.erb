@@ -1,0 +1,7 @@
+<h1><%= @sub.title %></h1>
+<p> <%= @sub.description %> </p>
+<% if @sub.moderator == current_user %>
+  <%= button_to "Edit", edit_user_sub_url(current_user, @sub) %>
+  <%= button_to "Delete", user_sub_url(current_user, @sub), method: :delete %>
+<% end %>
+<%= button_to "Index", user_subs_url(current_user), method: :get %>

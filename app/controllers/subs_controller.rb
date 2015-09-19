@@ -12,21 +12,36 @@ class SubsController < ApplicationController
       render :show
     else
       flash.now[:errors] = @sub.errors.full_messages
-      @user = Sub.new
+      @sub = Sub.new
       render :new
     end
   end
 
   def update
+    @sub = Sub.find(params[:id])
+
+    if @sub.update(sub_params)
+      redirect_to user_sub_url(@sub)
+    else
+      flash.now[:errors] = @sub.errors.full_messages
+
+      render :update
+    end
   end
 
   def destroy
+    @sub = Sub.find(params[:id])
+    @sub.destroy
+
+    redirect_to :user_subs
   end
 
   def show
+    @sub = Sub.find(params[:id])
   end
 
   def index
+    @subs = Sub.all
   end
 
   private

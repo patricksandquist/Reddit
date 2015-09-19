@@ -13,5 +13,10 @@
 class Sub < ActiveRecord::Base
   validates :title, :user_id, presence: true
 
-  belongs_to :moderator, class_name: "User"
+  belongs_to(
+    :moderator,
+    class_name: "User",
+    primary_key: :id,
+    foreign_key: :user_id
+  )
 end
